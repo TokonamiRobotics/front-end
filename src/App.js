@@ -23,14 +23,20 @@ const { networkId } = getConfig(process.env.NODE_ENV || "development");
 export default function App() {
 
   const [modalOpen, setModalOpen] = useState(false);
+  const [isFirst, setIsFirst] = useState(true);
 
   const urlParams = new URLSearchParams(window.location.search);
   let code = urlParams.get('transactionHashes');
   
-  let openModal = code === null
+  let openModal = code === null;
 
   useEffect(() => {
-    setModalOpen(!openModal);
+    if (isFirst) {
+      setModalOpen(!openModal);
+      if (!openModal) {
+        setIsFirst(false);
+      }
+    }
   })
 
   return (
