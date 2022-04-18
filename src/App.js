@@ -13,7 +13,7 @@ import MintingTool from "./Components/MintingTool";
 import MintModal from "./Components/MintModal";
 
 //assets
-import backgroundImg from "./assets/bgImage.png";
+import backgroundImg from "./assets/bgImage.jpg";
 import logoImg from "./assets/logo.png";
 
 import getConfig from "./config";

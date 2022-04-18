@@ -8,7 +8,7 @@ import {
 } from "near-api-js";
 import getConfig from "./config";
 
-const nearConfig = getConfig("development");
+const nearConfig = getConfig("mainnet");
 
 // Initialize contract & set global variables
 export async function initContract() {

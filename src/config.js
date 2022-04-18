@@ -1,4 +1,4 @@
-const CONTRACT_NAME = "contract780.testnet";
+const CONTRACT_NAME = "tokodao.near";
 
 function getConfig(env) {
   switch (env) {
