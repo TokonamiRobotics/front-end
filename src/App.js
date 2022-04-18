@@ -29,6 +29,10 @@ export default function App() {
   
   let openModal = code === null
 
+  useEffect(() => {
+    setModalOpen(!openModal);
+  })
+
   return (
     <>
       <div style={{
