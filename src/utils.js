@@ -42,7 +42,7 @@ export async function initContract() {
     nearConfig.contractName,
     {
       // View methods are read only. They don't modify the state, but usually return some value.
-      viewMethods: ["check_token"],
+      viewMethods: ["is_whitelist", "nft_total_supply"],
       // Change methods can modify the state. But you don't receive the returned value when called.
       changeMethods: ["nft_mint"],
     }
@@ -61,4 +61,5 @@ export function login() {
   // This works by creating a new access key for the user's account and storing
   // the private key in localStorage.
   window.walletConnection.requestSignIn(nearConfig.contractName);
+  window.accountId = window.walletConnection.getAccountId();
 }

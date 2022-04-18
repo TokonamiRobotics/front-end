@@ -6,91 +6,71 @@ import { login, logout } from "./utils";
 import "./bootstrap.min.css";
 
 // React Bootstraps imports
-import { Nav, Navbar, Container, Row, Card, Alert } from "react-bootstrap";
+import { Nav, Navbar, Container, Row, Col, Card, Alert } from "react-bootstrap";
 
 // Custom Components
 import MintingTool from "./Components/MintingTool";
-import InfoBubble from "./Components/InfoBubble";
+import MintModal from "./Components/MintModal";
 
+//assets
+import backgroundImg from "./assets/bgImage.png";
+import logoImg from "./assets/logo.png";
 
 import getConfig from "./config";
-
-import robotGif from "./assets/TOKONAMI.gif";
 
 const { networkId } = getConfig(process.env.NODE_ENV || "development");
 
 export default function App() {
-  const [userHasNFT, setuserHasNFT] = useState(false);
 
-  useEffect(() => {
-    const receivedNFT = async () => {
-      console.log(
-        await window.contract.check_token({
-          id: `${window.accountId}-go-team-token`,
-        })
-      );
-      if (window.accountId !== "") {
-        console.log(
-          await window.contract.check_token({
-            id: `${window.accountId}-go-team-token`,
-          })
-        );
+  const [modalOpen, setModalOpen] = useState(true);
 
-        setuserHasNFT(
-          await window.contract.check_token({
-            id: `${window.accountId}-TRR`,
-          })
-        );
-      }
-    };
-    receivedNFT();
-  }, []);
+  const urlParams = new URLSearchParams(window.location.search);
+  let code = urlParams.get('transactionHashes');
+  
+  let openModal = code === null
 
   return (
-    <React.Fragment>
-      {" "}
-      <Navbar bg='dark' variant='dark'>
-        <Container>
-          <Navbar.Brand href='#home'>
-            Tokonami Robotics
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls='responsive-navbar-nav' />
-          <Navbar.Collapse id='responsive-navbar-nav'>
-            <Nav className='me-auto'></Nav>
-            <Nav>
-              <Nav.Link
-                onClick={window.walletConnection.isSignedIn() ? logout : login}
-              >
-                {window.walletConnection.isSignedIn()
-                  ? window.accountId
-                  : "Login"}
-              </Nav.Link>{" "}
-            </Nav>
-          </Navbar.Collapse>
+    <>
+      <div style={{
+        height: "100vh", width: "100vw", margin: "0", padding: "0", display: "box",
+        backgroundImage: `url("${backgroundImg}")`,
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
+        backgroundPositionX: "50%",
+        backgroundPositionY: "50%"
+      }}>
+        <Container style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
+
+          <Row className="gx-0 d-flex justify-content-center" style={{marginTop: "5vh", width: "100vw"}}>
+            <Col xs={12} lg={6}>
+
+            </Col>
+            <Col xs={12} lg={3} className="d-flex justify-content-center">
+              <img src={logoImg} style={{width: "40vw"}}/>
+            </Col>
+            <Col xs={12} lg={3}>
+              
+            </Col>
+          </Row>
+          <Row style={{"justifyContent":"center", "marginTop":"50px"}}>
+  
+          </Row>
+          <Row className="gx-0" style={{ marginTop: "3vh", width: "100vw" }}>
+            <Col xs={12} lg={6}>
+
+            </Col>
+            <Col xs={12} lg={3}>
+              <MintingTool />
+            </Col>
+            <Col xs={12} lg={3}>
+              
+            </Col>
+          </Row>
         </Container>
-      </Navbar>
-      <Container style={{ marginTop: "3vh" }}>
-        {" "}
-        <Row>
-          {/* <Alert>
-            Hello! We are going to mint an NFT and have it appear in your
-            wallet! Sign in, mint your nft and head over to{" "}
-            <a href='https://wallet.testnet.near.org/'>
-              wallet.testnet.near.org
-            </a>{" "}
-            to see your new "Go Team" NFT!
-          </Alert> */}
-        </Row>
-        <Row style={{"justify-content":"center", "margin-top":"50px"}}>
-          <img src={robotGif} alt="loading..." style={{"width":"300px", "margin-bottom":"100px"}} />
-        </Row>
-        <Row>
-          <InfoBubble />
-        </Row>
-        <Row style={{ marginTop: "3vh" }}>
-          <MintingTool userNFTStatus={userHasNFT} />
-        </Row>
-      </Container>
-    </React.Fragment>
+      </div>
+      <MintModal open={modalOpen} closeModal={() => setModalOpen(false)}/>
+    </>
   );
 }
