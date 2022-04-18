@@ -12,12 +12,12 @@ import trmeta from "../Metadata";
 
 const MintingTool = (props) => {
 
-  const [wlMessage, setWlMessage] = useState("You have to login to be able to mint");
+  const [wlMessage, setWlMessage] = useState("You have to connect to be able to mint");
   const [totalSupply, setTotalSupply] = useState(0)
 
   useEffect(() => {
     const fetchData = async () => {
-      if (wlMessage === "You have to login to be able to mint" && window.walletConnection.isSignedIn()) {
+      if (wlMessage === "You have to connect to be able to mint" && window.walletConnection.isSignedIn()) {
         let wlQuantity = await window.contract.is_whitelist({account_id: window.accountId});
         setWlMessage(`You're whitelisted to mint ${wlQuantity} more NFT${wlQuantity > 1 ? "s" : ""}`)
       }
@@ -38,7 +38,7 @@ const MintingTool = (props) => {
 
   const logoutCall = () => {
     logout();
-    setWlMessage("You have to login to be able to mint");
+    setWlMessage("You have to connect to be able to mint");
   }
 
   return (
