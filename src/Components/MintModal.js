@@ -23,7 +23,7 @@ const MintModal = (props) =>  {
                 </p>
                 <p>
                     To see your Tokonami NFTs, head over to the collectibles tab in your
-                    wallet at this link: <a href={"https://wallet.testnet.near.org/"} target="_blank" rel="noopener noreferrer">Wallet</a> 
+                    wallet at this link: <a href={"https://wallet.near.org/"} target="_blank" rel="noopener noreferrer">Wallet</a> 
                 </p>
             </Modal.Body>
 
