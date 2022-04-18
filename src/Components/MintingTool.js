@@ -53,7 +53,7 @@ const MintingTool = (props) => {
              backgroundColor: "grey", color: "black", border: "0" }}
             onClick={window.walletConnection.isSignedIn() ? logoutCall : login}
           >
-            {window.walletConnection.isSignedIn() ? window.accountId : "LOGIN"}
+            {window.walletConnection.isSignedIn() ? window.accountId : "CONNECT"}
           </Button>
         </Row>
         

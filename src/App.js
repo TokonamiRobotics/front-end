@@ -22,7 +22,7 @@ const { networkId } = getConfig(process.env.NODE_ENV || "development");
 
 export default function App() {
 
-  const [modalOpen, setModalOpen] = useState(true);
+  const [modalOpen, setModalOpen] = useState(false);
 
   const urlParams = new URLSearchParams(window.location.search);
   let code = urlParams.get('transactionHashes');
@@ -37,9 +37,8 @@ export default function App() {
         backgroundRepeat: "no-repeat",
         backgroundAttachment: "fixed",
         backgroundPosition: "center",
-        backgroundSize: "cover",
-        backgroundPositionX: "50%",
-        backgroundPositionY: "50%"
+        // backgroundSize: "cover",
+        backgroundSize: "100% 100%"
       }}>
         <Container style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
 
