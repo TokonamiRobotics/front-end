@@ -13,6 +13,7 @@ const nearConfig = getConfig("development");
 // Initialize contract & set global variables
 export async function initContract() {
   // Initialize connection to the NEAR testnet
+  console.log(nearConfig);
   const near = await connect(
     Object.assign(
       { deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } },
