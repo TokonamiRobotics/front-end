@@ -19,7 +19,7 @@ const MintingTool = (props) => {
     const fetchData = async () => {
       if (wlMessage === "You have to connect to be able to mint" && window.walletConnection.isSignedIn()) {
         let wlQuantity = await window.contract.is_whitelist({account_id: window.accountId});
-        setWlMessage(`You're whitelisted to mint ${wlQuantity} more NFT${wlQuantity > 1 ? "s" : ""}`)
+        setWlMessage(`Time to mint your Tokonami collection!`)
       }
       setTotalSupply(await window.contract.nft_total_supply({}))
     }
