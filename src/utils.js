@@ -8,7 +8,7 @@ import {
 } from "near-api-js";
 import getConfig from "./config";
 
-const nearConfig = getConfig(process.env.NODE_ENV || "development");
+const nearConfig = getConfig("development");
 
 // Initialize contract & set global variables
 export async function initContract() {
@@ -37,7 +37,7 @@ export async function initContract() {
   // Creating new account object
   window.account = new Account(near, window.accountId);
   // Initializing our contract APIs by contract name and configuration
-  window.contract = await new Contract(
+  window.contract = new Contract(
     window.walletConnection.account(),
     nearConfig.contractName,
     {
